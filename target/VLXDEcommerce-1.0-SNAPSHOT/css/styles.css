@@ -1,0 +1,64 @@
+nav#navbar {
+    background-color: #ac171d;
+}
+
+.bg-red {
+    background-color: #ac171d !important;
+}
+
+.fg-white {
+    color: white !important;
+}
+
+nav#navbar div a {
+    color: white !important;
+}
+
+button {
+    display: flex !important;
+    align-items: center;
+}
+
+button#btn-login {
+    border: 2px solid white;
+    background: inherit;
+    font-weight: bold;
+}
+
+a#page-logo {
+    background: darkred;
+}
+
+span.uk-navbar-badge {
+    background: white;
+    color: #ac171d !important;
+}
+
+div#div-search-form {
+    width: 40% !important;
+}
+
+section#hero-slider {
+    min-width: 80vh !important;
+    overflow: hidden;
+}
+
+div.overlay-info {
+    border: 2px solid #ac171d;
+    background: #0004;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+div.overlay-info h1 {
+    color: #ed1c24;
+    font-weight: bold;
+}
+
+div#explainer {
+/*    background-image: url("https://images.unsplash.com/photo-1486175060817-5663aacc6655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;*/
+    
+}
