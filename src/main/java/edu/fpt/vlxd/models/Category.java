@@ -1,4 +1,5 @@
 package edu.fpt.vlxd.models;
+
 import lombok.*;
 
 @Data

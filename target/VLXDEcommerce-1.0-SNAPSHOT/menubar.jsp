@@ -11,7 +11,7 @@
     <nav id="navbar" class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <a id="page-logo" href="/home" class="uk-navbar-item uk-logo uk-margin-medium-left uk-width-small">
+                <a id="page-logo" href="/EcommercialWeb/home" class="uk-navbar-item uk-logo uk-margin-medium-left uk-width-small">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 28 34" class="uk-margin-large uk-svg uk-animation-stroke" uk-svg="stroke-animation: true" style="--uk-animation-stroke: 46;">
                         <polygon points="19.1 4.1 13.75 1 8.17 4.45 13.6 7.44 19.1 4.1" fill="#ac171d"></polygon>
                         <path d="M21.67,5.43,16.14,8.77,22.4,12.4v9.52l-8.44,4.76L5.6,21.93V14.55L0,11.7V25.21l13.75,8.08L28,25.21V9.07Z" fill="#ac171df"></path>
@@ -26,10 +26,16 @@
                     </a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
+<<<<<<< HEAD
                             <c:forEach items="${listCC}" var="category">
                                 <li>
                                     <a class="uk-dark" href="/categories/${category.cid}">${category.cname}</a>
                                     <!--${c.cname}-->
+=======
+                            <c:forEach items="${listCC}" var="o">
+                                <li>
+                                    ${o.cname}
+>>>>>>> 637f8076b6111f99e0a7ec9ca46746759ec83223
                                 </li>
                             </c:forEach>
                         </ul>

@@ -38,12 +38,12 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        edu.fpt.vlxd.dao.ProductDAO dao = new edu.fpt.vlxd.dao.ProductDAO();
         
         List<Product> products = this.getRandom10Products();
         List<Category> categories = this.getCategories();
         
-        System.out.println(categories.size());
-        
+        request.setAttribute("listCC", categories);
         request.setAttribute("title", "bruh");
         request.setAttribute("cartLength", 0);
         request.setAttribute("products", products);
