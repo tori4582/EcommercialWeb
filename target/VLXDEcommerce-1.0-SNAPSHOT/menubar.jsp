@@ -4,6 +4,7 @@
     Author     : hungt
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <section>
@@ -25,9 +26,12 @@
                     </a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li>Gạch</li>
-                            <li>Xi măng</li>
-                            <li>Vật liệu</li>
+                            <c:forEach items="${listCC}" var="category">
+                                <li>
+                                    <a class="uk-dark" href="/categories/${category.cid}">${category.cname}</a>
+                                    <!--${c.cname}-->
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </li>
@@ -54,12 +58,50 @@
                         <span class="uk-navbar-badge uk-badge">${cartLength}</span>
                     </a>
                 </li>
-                <li class="uk-navbar-item">
-                    <button id="btn-login" class="uk-button uk-button-danger">
-                        <span uk-icon="icon: user"></span>
-                        <span class="uk-margin uk-margin-small-left uk-margin-remove-vertical">Đăng nhập</span>
-                    </button>
-                </li>
+                <c:if test="${acc != null}">
+                    <li class="uk-navbar-item">
+                        <div class="uk-inline">
+                            <div class="fg-white">
+                                <span>Xin chào, </span>
+                                <span><b>${acc.user}</b></span>
+                                <span class="uk-icon" uk-icon="user"></span>
+                                <span class="uk-margin "uk-icon="chevron-down"></span>
+                            </div>
+                            <div uk-dropdown>
+                                <c:if test="${acc.isAdmin == 1 && acc.isSell == 1}">
+                                    <a href="products-management" class="uk-dark">
+                                        <span uk-icon="thumbnails"></span>
+                                        <span>Quản lý sản phẩm</span>
+                                    </a>
+                                    <a href="accounts-management" class="uk-dark">
+                                        <span uk-icon="users"></span>
+                                        <span>Quản lý tài khoản</span>
+                                    </a>
+                                </c:if>
+                                <c:if test="${acc.isAdmin == 0}">
+                                    <a href="orders-history" class="uk-dark">
+                                        <span uk-icon="history"></span>
+                                        <span>Lịch sử đơn hàng</span>
+                                    </a>
+                                </c:if>
+                                <a href="logout" class="uk-dark">
+                                    <span uk-icon="sign-out"></span>
+                                    <span>Đăng xuất</span>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </li>
+                </c:if>
+                <c:if test="${acc == null}">
+                    <li class="uk-navbar-item">
+                        <button id="btn-login" class="uk-button uk-button-danger" type="button" uk-toggle="target: #login-offcanvas">
+                            <span uk-icon="icon: user"></span>
+                            <span class="uk-margin uk-margin-small-left uk-margin-remove-vertical">Đăng nhập</span>
+                        </button>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </nav>

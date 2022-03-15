@@ -5,9 +5,7 @@
 package edu.fpt.vlxd.controllers;
 
 import edu.fpt.vlxd.dao.AccountDAO;
-import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
-import edu.fpt.vlxd.models.Product;
+import edu.fpt.vlxd.models.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,16 +13,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "HomeController", urlPatterns = {"/home"})
-public class HomeController extends HttpServlet {
+@WebServlet(name = "SignupController", urlPatterns = {"/SignupController"})
+public class SignupController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,41 +34,21 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        List<Product> products = this.getRandom10Products();
-        List<Category> categories = this.getCategories();
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
+        String re_pass = request.getParameter("repass");
         
-        System.out.println(categories.size());
-        
-        request.setAttribute("title", "bruh");
-        request.setAttribute("cartLength", 0);
-        request.setAttribute("products", products);
-        request.setAttribute("listCC", categories);
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-    }
-    
-    private List<Category> getCategories() {
-        ProductDAO productDAO = new ProductDAO();
-//        List<Product> list = dao2.getProductByCID(cateID);
-        return productDAO.getAllCategories();
-    }
-    
-    private List<Product> getRandom10Products() {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> products = productDAO.getAllProduct();
-        
-        List<Product> randomizedProducts = new ArrayList<>();
-        
-        for (int i = 0; i < 10; i++) {
-            randomizedProducts.add(
-                    products.get(
-                            new Random().nextInt(products.size())
-                    )
-            );
+        if (!pass.equals(re_pass)) {
+            response.sendRedirect("home.jsp");
+        } else {
+            AccountDAO dao = new AccountDAO();
+            Account a = dao.checkAccountExist(user);
+            if (a == null) {
+                //dc signup
+                dao.singup(user, pass);
+            } 
+            response.sendRedirect("home");
         }
-        
-        return randomizedProducts;
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

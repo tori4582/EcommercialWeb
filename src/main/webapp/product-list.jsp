@@ -30,4 +30,7 @@
         <a class="uk-position-center-left uk-position-small uk-slidenav-large uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
         <a class="uk-position-center-right uk-position-small uk-slidenav-large uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
     </div>
+    <div>
+        <button id="showall" onclick="location.href = 'products'" class="uk-button uk-button-danger">Xem tất cả sản phẩm</button>
+    </div>
 </section>

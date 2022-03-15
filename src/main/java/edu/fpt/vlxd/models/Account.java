@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 public class Account {
-	private int id;
+    private int id;
     private String user;
     private String pass;
     private int isSell;

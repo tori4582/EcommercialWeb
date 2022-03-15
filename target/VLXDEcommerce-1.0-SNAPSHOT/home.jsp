@@ -18,9 +18,16 @@
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit-icons.min.js"></script>
     </head>
     <body>
+        <!--<h1>${listCC}</h1>-->
+        
         <jsp:include page="menubar.jsp">
             <jsp:param name="cartLength" value="${cartLength}"/>
+            <jsp:param name="listCC" value="${listCC}"/>
+            <jsp:param name="acc" value="${sessionScope.acc}"/>
         </jsp:include>
+        
+        
+        <jsp:include page="loginform.jsp"/>
 
         <section class="hero-slider">
 
@@ -65,7 +72,7 @@
                 </div>
             </div>
         </section>
-
+        
         <jsp:include page="product-list.jsp">
             <jsp:param name="products" value="${products}"/>
         </jsp:include>

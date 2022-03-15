@@ -4,10 +4,6 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
-import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
-import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,16 +11,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "HomeController", urlPatterns = {"/home"})
-public class HomeController extends HttpServlet {
+@WebServlet(name = "LogoutController", urlPatterns = {"/logout"})
+public class LogoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,42 +32,10 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        List<Product> products = this.getRandom10Products();
-        List<Category> categories = this.getCategories();
-        
-        System.out.println(categories.size());
-        
-        request.setAttribute("title", "bruh");
-        request.setAttribute("cartLength", 0);
-        request.setAttribute("products", products);
-        request.setAttribute("listCC", categories);
-
-        request.getRequestDispatcher("home.jsp").forward(request, response);
-    }
-    
-    private List<Category> getCategories() {
-        ProductDAO productDAO = new ProductDAO();
-//        List<Product> list = dao2.getProductByCID(cateID);
-        return productDAO.getAllCategories();
-    }
-    
-    private List<Product> getRandom10Products() {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> products = productDAO.getAllProduct();
-        
-        List<Product> randomizedProducts = new ArrayList<>();
-        
-        for (int i = 0; i < 10; i++) {
-            randomizedProducts.add(
-                    products.get(
-                            new Random().nextInt(products.size())
-                    )
-            );
-        }
-        
-        return randomizedProducts;
-        
+        HttpSession session = request.getSession();
+        session.removeAttribute("acc");
+//        response.add
+        response.sendRedirect("home");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

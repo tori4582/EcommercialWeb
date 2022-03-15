@@ -14,6 +14,10 @@ nav#navbar div a {
     color: white !important;
 }
 
+nav#navbar div a.uk-dark {
+    color: black !important;
+}
+
 button {
     display: flex !important;
     align-items: center;
