@@ -4,13 +4,14 @@
     Author     : hungt
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <section>
     <nav id="navbar" class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <a id="page-logo" href="/home" class="uk-navbar-item uk-logo uk-margin-medium-left uk-width-small">
+                <a id="page-logo" href="/EcommercialWeb/home" class="uk-navbar-item uk-logo uk-margin-medium-left uk-width-small">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="46" viewBox="0 0 28 34" class="uk-margin-large uk-svg uk-animation-stroke" uk-svg="stroke-animation: true" style="--uk-animation-stroke: 46;">
                         <polygon points="19.1 4.1 13.75 1 8.17 4.45 13.6 7.44 19.1 4.1" fill="#ac171d"></polygon>
                         <path d="M21.67,5.43,16.14,8.77,22.4,12.4v9.52l-8.44,4.76L5.6,21.93V14.55L0,11.7V25.21l13.75,8.08L28,25.21V9.07Z" fill="#ac171df"></path>
@@ -25,9 +26,11 @@
                     </a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li>Gạch</li>
-                            <li>Xi măng</li>
-                            <li>Vật liệu</li>
+                            <c:forEach items="${listCC}" var="o">
+                                <li>
+                                    ${o.cname}
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </li>

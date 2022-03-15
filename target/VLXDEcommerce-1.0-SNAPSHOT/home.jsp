@@ -67,7 +67,7 @@
         </section>
 
         <jsp:include page="product-list.jsp">
-            <jsp:param name="products" value="${products}"/>
+            <jsp:param name="products" value=""/>
         </jsp:include>
 
         <section>

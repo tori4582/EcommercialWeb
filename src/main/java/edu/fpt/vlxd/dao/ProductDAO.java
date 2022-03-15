@@ -1,6 +1,7 @@
 package edu.fpt.vlxd.dao;
 
 import edu.fpt.vlxd.context.DBContext;
+import edu.fpt.vlxd.models.Category;
 
 import edu.fpt.vlxd.models.Product;
 
@@ -156,6 +157,24 @@ public class ProductDAO {
                 }
                 return list;
         }
+        
+        //Lấy ra toàn bộ Category
+        public List<Category> getAllCategory() {
+        List<Category> list = new ArrayList<>();
+        String query = "select * from Category";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Category(rs.getInt(1),
+                        rs.getString(2)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
         // Lấy Product cuối cùng - Last (có thể dùng cho Newest)
         // newest

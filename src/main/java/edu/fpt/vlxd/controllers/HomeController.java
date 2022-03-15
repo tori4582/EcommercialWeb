@@ -5,6 +5,7 @@
 package edu.fpt.vlxd.controllers;
 
 import edu.fpt.vlxd.dao.ProductDAO;
+import edu.fpt.vlxd.models.Category;
 import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,9 +37,12 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        edu.fpt.vlxd.dao.ProductDAO dao = new edu.fpt.vlxd.dao.ProductDAO();
         
         List<Product> products = this.getRandom10Products();
+        List<Category> listC = dao.getAllCategory();
         
+        request.setAttribute("listCC", listC);
         request.setAttribute("title", "bruh");
         request.setAttribute("cartLength", 0);
         

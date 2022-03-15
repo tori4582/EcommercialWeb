@@ -24,6 +24,9 @@
                         <h3 class="uk-card-title">${p.name}</h3>
                         <p>${p.title}</p>
                     </div>
+                    <div>
+                        
+                    </div>
                 <li>
             </c:forEach>
         </ul>
