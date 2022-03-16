@@ -1,5 +1,6 @@
 package edu.fpt.vlxd.dao;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
 import edu.fpt.vlxd.context.DBContext;
 import edu.fpt.vlxd.models.Category;
 
@@ -199,6 +200,48 @@ public class ProductDAO {
                 return null;
         }
 
+        //Sắp xếp sp gia tăng dần
+        public List<Product> getIncrease(String cid){
+             List<Product> list = new ArrayList<>();
+             String query = "select * from dbo.product where cateID =? order by price asc";
+             try{
+                 conn = new DBContext().getConnection();
+                 ps = conn.prepareStatement(query);
+                 ps.setString(1, cid);
+                 while(rs.next()){
+                     list.add(new Product(rs.getInt(1),
+                                rs.getString(2),
+                                rs.getString(3),
+                                rs.getDouble(4),
+                                rs.getString(5),
+                                rs.getString(6)));
+                 }
+             } catch (Exception e){
+               e.printStackTrace();
+        }
+          return list;
+        }
+        //Sắp xếp sp gia giảm dần
+         public List<Product> getDecrease(String cid){
+             List<Product> list = new ArrayList<>();
+             String query = "select * from dbo.product where cateID = ? order by price desc";
+             try{
+                 conn = new DBContext().getConnection();
+                 ps = conn.prepareStatement(query);
+                 ps.setString(1, cid);
+                 while(rs.next()){
+                     list.add(new Product(rs.getInt(1),
+                                rs.getString(2),
+                                rs.getString(3),
+                                rs.getDouble(4),
+                                rs.getString(5),
+                                rs.getString(6)));
+                 }
+             } catch (Exception e){
+               e.printStackTrace();
+        }
+          return list;
+        } 
         // Thêm, sửa, xóa product
         public void deleteProduct(String pid) {
                 String query = "delete from product\n"

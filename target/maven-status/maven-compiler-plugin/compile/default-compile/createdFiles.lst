@@ -9,7 +9,6 @@ edu\fpt\vlxd\models\Product.class
 edu\fpt\vlxd\context\DBContext.class
 edu\fpt\vlxd\models\Account.class
 edu\fpt\vlxd\dao\OrderDAO.class
-.netbeans_automatic_build
 edu\fpt\vlxd\models\Category.class
 edu\fpt\vlxd\controllers\HomeController.class
 edu\fpt\vlxd\dao\NameDAO.class
