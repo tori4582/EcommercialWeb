@@ -26,16 +26,9 @@
                     </a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-<<<<<<< HEAD
                             <c:forEach items="${listCC}" var="category">
                                 <li>
                                     <a class="uk-dark" href="/categories/${category.cid}">${category.cname}</a>
-                                    <!--${c.cname}-->
-=======
-                            <c:forEach items="${listCC}" var="o">
-                                <li>
-                                    ${o.cname}
->>>>>>> 637f8076b6111f99e0a7ec9ca46746759ec83223
                                 </li>
                             </c:forEach>
                         </ul>

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <section>
-    
+
     <div id="login-offcanvas" uk-offcanvas="overlay: true; flip: true">
         <div class="uk-offcanvas-bar uk-width-1-4">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
@@ -34,12 +34,15 @@
                         <!-- Lẽ ra sẽ có ghi nhớ đăng nhập ở đây :)))) -->
                     </div>
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-danger uk-width-1-1" type="submit">
-                            <span class="uk-form-icon" uk-icon="icon: sign-in"></span>
-                            <span>Đăng nhập</span>
+                        <hr class="uk-margin">
+                        <button class="uk-button uk-button-danger uk-width-1-1 bg-red" type="submit">
+                            <span class="uk-text-center uk-width-1-1">
+                                <span class="uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                                <span>Đăng nhập</span>
+                            </span>
                         </button>
                     </div>
-                    <div class="uk-margin">
+                    <div class="uk-margin uk-text-center">
                         Bạn chưa có tài khoản?
                         <a href="" id="signup-switcher" uk-toggle="target: .input-form; animation: uk-animation-slide-right">Tạo tài khoản</a>
                     </div>
@@ -47,7 +50,10 @@
             </div>
 
             <div class="input-form" hidden>
-                <h2>Tạo tài khoản</h2>
+                <div class="uk-flex uk-flex-middle uk-margin">
+                    <a href="" class="uk-inline uk-margin-small-right" uk-slidenav-previous uk-toggle="target: .input-form; animation: uk-animation-slide-right"></a>
+                    <h2 class="uk-inline uk-margin-remove-vertical">Tạo tài khoản</h2>
+                </div>
                 <form class="uk-form-stacked" action="login" method="post">
                     <div class="uk-margin">
                         <label class="uk-form-label">Username</label>
@@ -73,10 +79,14 @@
                     <div class="uk-margin">
                         <!-- Lẽ ra sẽ có ghi nhớ đăng nhập ở đây :)))) -->
                     </div>
+                    
                     <div class="uk-margin">
-                        <button class="uk-button uk-button-danger uk-width-1-1" type="submit">
-                            <span uk-icon="icon: sign-in"></span>
-                            <span>Tạo tài khoản</span>
+                        <hr>
+                        <button class="uk-button uk-button-danger uk-width-1-1 bg-red" type="submit">
+                            <span class="uk-width-1-1 uk-text-center">
+                                <span class="uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                                <span>Tạo tài khoản</span>
+                            </span>
                         </button>
                     </div>
                 </form>
@@ -86,8 +96,8 @@
 
         </div>
     </div>
-    
-    
+
+
     <script>
         window.onload = () => {
             const aLink = document.getElementById('signup-switcher');
@@ -97,5 +107,5 @@
 //            }
         }
     </script>
-    
+
 </section>

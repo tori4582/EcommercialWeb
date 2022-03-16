@@ -6,7 +6,7 @@ package edu.fpt.vlxd.controllers;
 
 import edu.fpt.vlxd.dao.AccountDAO;
 import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
+import edu.fpt.vlxd.models.Category;    
 import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
