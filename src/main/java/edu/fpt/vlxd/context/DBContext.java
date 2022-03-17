@@ -20,10 +20,10 @@ public class DBContext {
     }
     /*Insert your other code right after this comment*/
     /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
-    private final String serverName = "DESKTOP-KPL4NSO";
+    private final String serverName = "ADMIN-PC";
     private final String dbName = "Wish";
     private final String portNumber = "1433";
     private final String instance="";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final String userID = "sa";
-    private final String password = "123456";
+    private final String password = "123";
 }

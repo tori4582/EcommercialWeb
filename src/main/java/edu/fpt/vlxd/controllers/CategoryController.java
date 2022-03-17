@@ -4,6 +4,9 @@
  */
 package edu.fpt.vlxd.controllers;
 
+import edu.fpt.vlxd.dao.*;
+import edu.fpt.vlxd.models.Category;
+import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -31,7 +35,19 @@ public class CategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String cateID = request.getParameter("cid");
+        //da lay dc category id ve roi
+        edu.fpt.vlxd.dao.ProductDAO dao = new edu.fpt.vlxd.dao.ProductDAO();
+        List<Product> list = dao.getProductByCID(cateID);
+        List<Category> listC = dao.getAllCategory();
+        Product last = dao.getLast();
+ 
         
+        request.setAttribute("listP", list);
+        request.setAttribute("listCC", listC);
+        request.setAttribute("p", last);
+        request.setAttribute("tag", cateID);
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

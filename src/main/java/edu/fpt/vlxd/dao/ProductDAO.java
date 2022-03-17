@@ -221,7 +221,7 @@ public class ProductDAO {
         }
           return list;
         }
-        //Sắp xếp sp gia giảm dần
+        //Sắp xếp sp giảm dần
          public List<Product> getDecrease(String cid){
              List<Product> list = new ArrayList<>();
              String query = "select * from dbo.product where cateID = ? order by price desc";

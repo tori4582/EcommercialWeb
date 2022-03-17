@@ -35,17 +35,17 @@
                     <div>
                         <ul class="uk-slideshow-items" uk-height-viewport="offset-bottom: 25; min-heigh: 50; offset-top: true">
                             <li>
-                                <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="" uk-cover>
+                                <img src="https://www.vn.weber/files/vn/styles/1920x1080/public/pictures/2019-12/gach-granite-92.jpg?itok=IwPF09xR" alt="" uk-cover>
 
                             </li>
                             <li>
-                                <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" alt="" uk-cover>
+                                <img src="https://kientrucvietxanh.com/wp-content/uploads/2020/01/gach-granite-phong-khach-1200x960.jpg" alt="" uk-cover>
                             </li>
                             <li>
-                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80" alt="" uk-cover>
+                                <img src="https://gachxinh.com/wp-content/uploads/2021/06/Picture13-9.jpg" alt="" uk-cover>
                             </li>
                             <li>
-                                <<img src="https://images.unsplash.com/photo-1587052694737-a972e4186288?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="alt"/>
+                                <<img src="https://nhadepso.com/wp-content/uploads/2018/08/phan-biet-gach-porcelain-va-ceramic-nha-dep-so-3a.jpg" alt="alt" uk-cover/>
                             </li>
                         </ul>
 
@@ -63,8 +63,8 @@
                 </div>
                 <div class="uk-margin-large-left uk-padding-large uk-position-large uk-position-center-left uk-width-2-3">
                     <div class="overlay-info uk-width-2xlarge uk-padding-large uk-light uk-animation-slide-top-medium">
-                        <h1><span uk-icon="icon: uikit; ratio: 5"></span> HighBrick Corporation</h1>
-                        <h4>The world's leading in construction facilities and materials</h4>
+                        <h1><span uk-icon="icon: uikit; ratio: 5"></span> Vật liệu xây dựng</h1>
+                        <h4>Chuyên gạch ốp lát, mái ngói, gạch bông</h4>
                         <p>We are in part of <strong>Shanghai</strong>, <strong>Melbourne</strong>, <strong>Berlin</strong>, and <strong>Vietnam</strong><p>
                     </div>
                 </div>
