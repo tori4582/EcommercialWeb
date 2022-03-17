@@ -11,7 +11,6 @@ edu\fpt\vlxd\models\Product.class
 edu\fpt\vlxd\controllers\SignupController.class
 edu\fpt\vlxd\context\DBContext.class
 edu\fpt\vlxd\models\Account.class
-edu\fpt\vlxd\dao\OrderDAO.class
 edu\fpt\vlxd\models\Category.class
 edu\fpt\vlxd\controllers\HomeController.class
 edu\fpt\vlxd\dao\NameDAO.class

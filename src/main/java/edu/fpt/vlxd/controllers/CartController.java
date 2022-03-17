@@ -1,11 +1,14 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * Click nbfs:nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs:nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
+import edu.fpt.vlxd.dao.CartDAO;
+import edu.fpt.vlxd.dao.ProductDAO;
 import edu.fpt.vlxd.models.Account;
+import edu.fpt.vlxd.models.Cart;
+import edu.fpt.vlxd.models.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,13 +17,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "CartController", urlPatterns = {"/cart"})
+public class CartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +39,30 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
+        System.out.println("Co con cak  ");
+        System.out.println("???" + request.getAttribute("title"));
+        HttpSession session = request.getSession();
+
+        Account acc = (Account) session.getAttribute("acc");
+        session.setAttribute("acc", acc);
         
-        AccountDAO dao = new AccountDAO();
-        Account a = dao.login(username, password);
+        List<Category> categories = new ProductDAO().getAllCategories();
         
-        if (a == null) {
-            System.out.println("invalid login action");
-            request.setAttribute("e", "invalid");
-            request.getRequestDispatcher("home").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
-            session.setMaxInactiveInterval(1000);
-            response.sendRedirect("home");
+        request.setAttribute("listCC", categories);
+        request.setAttribute("title", "bruh");
+        request.setAttribute("cartLength", 0);
+        request.setAttribute("listCC", categories);
+        
+        
+        if (acc == null) {
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
+            return;
         }
+        
+        Cart c = new CartDAO().getCart(acc);
+
+        request.setAttribute("c", c);
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -90,6 +102,7 @@ public class LoginController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    } 
+    // </editor-fold>
 
 }

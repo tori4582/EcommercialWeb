@@ -10,6 +10,10 @@ nav#navbar {
     color: white !important;
 }
 
+.fg-red {
+    color: #ac171d !important;  
+}
+
 nav#navbar div a {
     color: white !important;
 }
@@ -23,7 +27,7 @@ button {
     align-items: center;
 }
 
-button#btn-login {
+button.btn-red {
     border: 2px solid white;
     background: inherit;
     font-weight: bold;
@@ -60,9 +64,15 @@ div.overlay-info h1 {
 }
 
 div#explainer {
-/*    background-image: url("https://images.unsplash.com/photo-1486175060817-5663aacc6655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-    background-position: bottom;
-    background-size: cover;
-    background-repeat: no-repeat;*/
-    
+    /*    background-image: url("https://images.unsplash.com/photo-1486175060817-5663aacc6655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+        background-position: bottom;
+        background-size: cover;
+        background-repeat: no-repeat;*/
+
+}
+
+div.uk-notification-message {
+    background-color: #ac171d !important;
+    border: white 2px solid;
+    color: white !important;
 }

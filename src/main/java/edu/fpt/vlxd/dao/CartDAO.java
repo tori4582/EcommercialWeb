@@ -30,7 +30,7 @@ public class CartDAO {
         }
     }
 
-    public static Cart getCart(Account a) {
+    public Cart getCart(Account a) {
         String query = "select c.[uid], c.[oid], o.[pid], o.[amount], c.[ordered]"
                 + "FROM Wish.dbo.[Order] o INNER JOIN Wish.dbo.[Cart] c "
                 + "ON o.oId = c.oId "
@@ -72,7 +72,7 @@ public class CartDAO {
     }
 
     public void addProductToCart(Account a, Product p, int amount) {
-        Cart c = CartDAO.getCart(a);
+        Cart c = this.getCart(a);
         if (c == null || c.getOrders().isEmpty()) {
             this.addNewProductToCart(a, p, amount);
             return;
@@ -137,7 +137,7 @@ public class CartDAO {
     }
 
     public void increaseOrder(Account a, int oid) {
-        Cart c = CartDAO.getCart(a);
+        Cart c = this.getCart(a);
 
         for (Order o : c.getOrders()) {
             if (o.getOid() == oid) {
@@ -187,7 +187,7 @@ public class CartDAO {
     }
 
     public void decreaseOrder(Account a, int oid) {
-        Cart c = CartDAO.getCart(a);
+        Cart c = this.getCart(a);
 
         for (Order o : c.getOrders()) {
             if (o.getOid() == oid) {

@@ -4,8 +4,6 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
-import edu.fpt.vlxd.models.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,14 +11,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "CategoryController", urlPatterns = {"/category"})
+public class CategoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,22 +32,6 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
-        
-        AccountDAO dao = new AccountDAO();
-        Account a = dao.login(username, password);
-        
-        if (a == null) {
-            System.out.println("invalid login action");
-            request.setAttribute("e", "invalid");
-            request.getRequestDispatcher("home").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
-            session.setMaxInactiveInterval(1000);
-            response.sendRedirect("home");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,6 +4,7 @@
     Author     : hungt
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <section>
@@ -29,6 +30,22 @@
                             <span class="uk-form-icon" uk-icon="icon: lock"></span>
                             <input name="pass" class="uk-input" type="password">
                         </div>
+                    </div>
+                    <div class="uk-margin">
+                        <c:if test="${err == 'invalid'}">
+                            <div class="uk-text-danger">   
+                                <span uk-icon="warning"></span>
+                                <span>Invalid username or password</span>
+                            </div>
+                            <script>
+                                UIkit.notification({
+                                    message: '<div class="noti-error bg-red fg-white uk-padding-small-right">\n\
+                                                <span uk-icon="warning" class="uk-margin-small-right"></span> Invalid username or password\n\
+                                              </div>',
+                                    status: 'danger'
+                                });
+                            </script>
+                        </c:if>
                     </div>
                     <div class="uk-margin">
                         <!-- Lẽ ra sẽ có ghi nhớ đăng nhập ở đây :)))) -->
@@ -79,7 +96,7 @@
                     <div class="uk-margin">
                         <!-- Lẽ ra sẽ có ghi nhớ đăng nhập ở đây :)))) -->
                     </div>
-                    
+
                     <div class="uk-margin">
                         <hr>
                         <button class="uk-button uk-button-danger uk-width-1-1 bg-red" type="submit">

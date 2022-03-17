@@ -62,7 +62,7 @@ public class OrderDAO {
 
     //
     public void purchase(Account a) {
-        Cart c = CartDAO.getCart(a);
+        Cart c = new CartDAO().getCart(a);
 
         if (c == null || c.getOrders().isEmpty()) {
             return;
@@ -90,7 +90,7 @@ public class OrderDAO {
         List<Account> acc = AccountDAO.getSellAccount();
 
         for (Account a : acc) {
-            Cart c = CartDAO.getCart(a);
+            Cart c = new CartDAO().getCart(a);
             if (c != null) {
                 result.addAll(c.getOrders());
             }

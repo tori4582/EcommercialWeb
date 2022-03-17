@@ -4,23 +4,20 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
-import edu.fpt.vlxd.models.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "AddToCartController", urlPatterns = {"/add"})
+public class AddToCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,22 +31,17 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
-        
-        AccountDAO dao = new AccountDAO();
-        Account a = dao.login(username, password);
-        
-        if (a == null) {
-            System.out.println("invalid login action");
-            request.setAttribute("e", "invalid");
-            request.getRequestDispatcher("home").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
-            session.setMaxInactiveInterval(1000);
-            response.sendRedirect("home");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddToCartController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddToCartController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -6,4 +6,7 @@
     version="4.0"
 >
     <!-- Config here. -->
+    <welcome-file-list>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

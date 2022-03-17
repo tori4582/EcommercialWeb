@@ -8,10 +8,13 @@ D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxdecommerce\resources\JakartaEE9Res
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\models\Order.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\models\Product.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxdecommerce\JakartaRestConfiguration.java
+D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\controllers\AllProductsController.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\controllers\LoginController.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\dao\NameDAO.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\dao\CartDAO.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\context\DBContext.java
+D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\controllers\CategoryController.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\models\Cart.java
+D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\controllers\CartController.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\dao\ProductDAO.java
 D:\prj\VLXDEcommerce\src\main\java\edu\fpt\vlxd\models\Account.java
