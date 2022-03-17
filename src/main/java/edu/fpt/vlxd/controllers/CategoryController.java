@@ -15,7 +15,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 
 /**
@@ -64,7 +66,6 @@ public class CategoryController extends HttpServlet {
         request.setAttribute("products", products);
         
         request.getRequestDispatcher("category.jsp").forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
