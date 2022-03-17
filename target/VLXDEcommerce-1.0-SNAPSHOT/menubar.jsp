@@ -28,7 +28,7 @@
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             <c:forEach items="${listCC}" var="category">
                                 <li>
-                                    <a class="uk-dark" href="/categories/${category.cid}">${category.cname}</a>
+                                    <a class="uk-dark" href="category?c=${category.cid}">${category.cname}</a>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -39,9 +39,9 @@
 
         <div id="div-search-form" class="uk-navbar-center uk-width-3-5">
             <div class="uk-navbar-item uk-width-1-1">
-                <form id="search-form" action="search" method="post" class="uk-form-horizontal uk-width-1-1">
+                <form id="search-form" action="search" method="get" class="uk-form-horizontal uk-width-1-1">
                     <div class="uk-inline uk-width-1-1">
-                        <input type="text" class="uk-input uk-width-1-1" placeholder="Bạn muốn tìm sản phẩm gì?">
+                        <input type="text" name="q" class="uk-input uk-width-1-1" placeholder="Bạn muốn tìm sản phẩm gì?">
                             <button type="submit" class="uk-form-icon uk-form-icon-flip" uk-icon="search"></button>
                     </div>
                 </form>
@@ -101,7 +101,7 @@
                         </button>
                     </li>
                     <jsp:include page="loginform.jsp">
-                        <jsp:param name="err" value="${err}"/>
+                        <jsp:param name="e" value="${e}"/>
                     </jsp:include>
                 </c:if>
             </ul>

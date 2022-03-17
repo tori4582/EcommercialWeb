@@ -28,8 +28,8 @@
         <section class="uk-section-default">
             <div class="uk-section uk-light uk-background-cover" style="background-image: url(https://t4.ftcdn.net/jpg/03/24/94/19/240_F_324941929_9DVxm0eIsy4a1RFrmPnvcjan7Z9Eo3Cn.jpg)">
                 <div class="uk-width-1-1">
-                    <span uk-icon="icon: thumbnails; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
-                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Sản phẩm / ${title}</h1>
+                    <span uk-icon="icon: search; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
+                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Tìm kiếm</h1>
                 </div>
             </div>
         </section>
@@ -76,18 +76,6 @@
                 <li><a href="#"><span uk-pagination-next></span></a></li>
             </ul>
         </section>
-
-        <c:if test="${specificProduct != null}">
-            <div id="product-detail" class="uk-flex-top" uk-modal>
-                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-
-                    <button class="uk-modal-close-default" type="button" uk-close></button>
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                </div>
-            </div>
-        </c:if>
 
     </body>
 </html>

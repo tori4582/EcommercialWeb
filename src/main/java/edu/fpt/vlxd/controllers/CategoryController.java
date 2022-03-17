@@ -4,6 +4,10 @@
  */
 package edu.fpt.vlxd.controllers;
 
+import edu.fpt.vlxd.dao.ProductDAO;
+import edu.fpt.vlxd.models.Account;
+import edu.fpt.vlxd.models.Category;
+import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +15,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
@@ -31,6 +37,33 @@ public class CategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String cid = request.getParameter("c");
+        ProductDAO dao = new ProductDAO();
+        List<Category> categories = dao.getAllCategories();
+        Category currentCategory = null;
+        
+        System.out.println("???");
+        
+        for (Category c : categories) {
+            if (c.getCid() == Integer.parseInt(cid)) {
+                currentCategory = c;
+                break;
+            } 
+        }
+        
+        List<Product> products = dao.getProductByCID(cid);
+        
+        HttpSession session = request.getSession();
+
+        Account acc = (Account) session.getAttribute("acc");
+        session.setAttribute("acc", acc);
+        
+        request.setAttribute("listCC", categories);
+        request.setAttribute("title", currentCategory.getCname());
+        request.setAttribute("cartLength", 0);
+        request.setAttribute("products", products);
+        
+        request.getRequestDispatcher("category.jsp").forward(request, response);
         
     }
 

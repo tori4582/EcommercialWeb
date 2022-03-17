@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="uk-margin">
-                        <c:if test="${err == 'invalid'}">
+                        <c:if test="${e == 'invalid'}">
                             <div class="uk-text-danger">   
                                 <span uk-icon="warning"></span>
                                 <span>Invalid username or password</span>

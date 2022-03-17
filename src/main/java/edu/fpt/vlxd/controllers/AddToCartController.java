@@ -4,15 +4,19 @@
  */
 package edu.fpt.vlxd.controllers;
 
+import edu.fpt.vlxd.dao.CartDAO;
+import edu.fpt.vlxd.dao.ProductDAO;
+import edu.fpt.vlxd.models.Account;
+import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-/**
+/**disp
  *
  * @author hungt
  */
@@ -31,18 +35,26 @@ public class AddToCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToCartController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToCartController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        Account a = (Account) request.getSession().getAttribute("acc");
+        
+        if (a == null) {
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+            return;
         }
+        
+        int uid = a.getId();
+        String pid = request.getParameter("p");
+//        int amount = Integer.valueOf(request.getParameter("amount"));
+        
+        ProductDAO dao = new ProductDAO();
+        
+        Product p = dao.getProductByID(pid);
+        
+        new CartDAO().addProductToCart(a, p, 1);
+        
+        response.sendRedirect("cart");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

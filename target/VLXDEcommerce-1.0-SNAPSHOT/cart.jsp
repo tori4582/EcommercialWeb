@@ -55,14 +55,36 @@
                     </script>
                 </c:if>
                 <c:if test="${sessionScope.acc != null}">
-                    <div class="uk-width-1-1">
-                        <h1>${sessionScope.acc}</h1>
+                    <div class="uk-flex uk-flex-column uk-width-1-1">
+                        <div class="uk-width-1-1">
+                        <!--<h1>${sessionScope.acc}</h1>-->
                     </div>
-                    <c:forEach items="${c}" var="item">
-                        <span>${item.name}</span>
-                    </c:forEach>
+                    <div class="uk-width-1-1">
+                        <table class="uk-table uk-table-hover uk-table-divider">
+                            <thead>
+                                <tr>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody uk-scrollspy="target: > tr; cls: uk-animation-slide-top; delay: 100">
+                                <c:forEach items="${orders}" var="order">
+                                    <tr>
+                                        <td><img class="uk-preserve-width" src="${order.product.image}" width="50" height="50" alt=""></td>
+                                        <td><a class="uk-link-reset" href="products?p=${order.product.id}" uk-toggle="target: #product-detail">${order.product.name}</a></td>
+                                        <td><span class="uk-text-primary uk-text-bolder">${order.product.price}</span> $</td>
+                                        <td><a href="add?p=${order.product.id}"><button class="uk-button uk-button-default">Mua ngay</button></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    </div>
+                    
                 </c:if>
-            </div>
         </section>
 
         <c:if test="${sessionScope.acc != null}">
@@ -75,14 +97,14 @@
                     </div>
                     <hr class="uk-divider-vertical" style="background: white; margin-left: 50px; margin-right: 50px;">
                     <div>
-                        <form action="OrderController" method="post">
-                            <button name="checkout" type="button" class="uk-button uk-button-danger btn-red uk-width-medium uk-padding-small">
+                        <a href="checkout" >
+                            <button name="btn-checkout" type="button" class="uk-button uk-button-danger btn-red uk-width-medium uk-padding-small">
                                 <p class="uk-width-1-1 uk-padding-remove uk-margin-remove uk-flex uk-flex-center uk-flex-middle">
                                     <span uk-icon="icon: credit-card; ratio: 1.5" class="uk-margin-right"></span>
                                     Thanh toán
                                 </p>
                             </button>
-                        </form>
+                        </a>
                     </div>
                 </div>
             </section>

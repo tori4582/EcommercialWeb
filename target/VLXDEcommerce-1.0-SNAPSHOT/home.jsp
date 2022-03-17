@@ -24,7 +24,7 @@
             <jsp:param name="cartLength" value="${cartLength}"/>
             <jsp:param name="listCC" value="${listCC}"/>
             <jsp:param name="acc" value="${sessionScope.acc}"/>
-            <jsp:param name="err" value="${err}"/>
+            <jsp:param name="e" value="${e}"/>
         </jsp:include>
 
         <section class="hero-slider">
