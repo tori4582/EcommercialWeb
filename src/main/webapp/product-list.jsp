@@ -16,16 +16,20 @@
     <div id="featured-products-container" class="uk-section uk-position-relative" uk-slider>
         <ul class="uk-slider-items uk-width-1-1 uk-grid">
             <c:forEach items="${products}" var="p">
-                <li class="uk-card uk-card-default uk-slider-item uk-margin-small uk-width-medium">
+                <li class="uk-card uk-card-default uk-slider-item uk-margin-small uk-width-medium uk-padding-small uk-position-relative uk-box-shadow-large">
                     <div class="uk-card-media-top">
                         <img src="${p.image}" alt="">
                     </div>
-                    <div class="uk-card-body">
-                        <h3 class="uk-card-title">${p.name}</h3>
-                        <p>${p.title}</p>
+                    <hr>
+                    <div class="uk-card-body uk-padding-small">
+                        <a href="product/?p=${p.id}"><h3 class="uk-card-title">${p.name}</h3></a>
                     </div>
-                    <div>
-                        
+                    <div class="uk-margin-small uk-padding-small"></div>
+                    <div class="uk-position-bottom uk-width-1-1">
+                        <div class="uk-width-1-1 uk-flex uk-flex-middle uk-flex-right uk-padding">
+                            <h4 class="uk-text-bolder uk-text-primary uk-margin-remove">${p.price}</h4> $
+                        </div>
+                        <a href="add?p=${p.id}"><button class="uk-button uk-button-danger uk-width-1-1 uk-flex uk-flex-center uk-padding-small">Mua ngay</button></a>
                     </div>
                 <li>
             </c:forEach>

@@ -4,25 +4,24 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.NameDAO;
-import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
-import edu.fpt.vlxd.models.Product;
-import jakarta.servlet.ServletException;
+import edu.fpt.vlxd.dao.CartDAO;
+import edu.fpt.vlxd.models.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "SearchController", urlPatterns = {"/search"})
-public class SearchController extends HttpServlet {
+@WebServlet(name = "AdjustAmountController", urlPatterns = {"/adjust"})
+public class AdjustAmountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +35,24 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("q");
-        NameDAO dao = new NameDAO();
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        CartDAO dao = new CartDAO();
+
+        int uid = a.getId();
+        String oid = request.getParameter("oid");
+        String action = request.getParameter("action");
         
-        // normalize unicode characters to ascii standard characters
-        txtSearch = txtSearch.replaceAll("[^\\p{ASCII}]", ""); 
+        if (action.equals("add")) {
+            dao.increaseOrder(a, Integer.valueOf(oid));
+        } else if (action.equals("sub")) {
+            dao.decreaseOrder(a, Integer.valueOf(oid));
+        } else if (action.equals("remove")) {
+            int pid = Integer.parseInt(request.getParameter("pid"));
+            dao.deleteProductFromCart(pid);
+        }
         
-        List<Product> list = dao.searchByName(txtSearch);
-        List<Category> listC = new ProductDAO().getAllCategory();
-        request.setAttribute("products", list);
-        request.setAttribute("txtS", txtSearch);
-        
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        response.sendRedirect("cart");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

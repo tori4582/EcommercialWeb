@@ -36,6 +36,34 @@ public class AccountDAO {
         }
         return null;
     }
+    
+    public List<Account> getAllUsers() {
+        List<Account> list = new ArrayList<>();
+
+        String query = "SELECT * FROM [Account] a";
+        try {
+            PreparedStatement ps = new DBContext().getConnection()
+                    .prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Account a = new Account();
+
+                a.setId(rs.getInt(1));
+                a.setUser(rs.getString(2));
+                a.setPass(rs.getString(3));
+                a.setIsSell(rs.getInt(4));
+                a.setIsAdmin(rs.getInt(5));
+
+                list.add(a);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public Account checkAccountExist(String user) {
         String query = "select * from account\n"

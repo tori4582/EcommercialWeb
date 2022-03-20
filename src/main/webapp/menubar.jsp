@@ -72,7 +72,7 @@
                                         <span uk-icon="thumbnails"></span>
                                         <span>Quản lý sản phẩm</span>
                                     </a>
-                                    <a href="accounts-management" class="uk-dark uk-margin">
+                                    <a href="users" class="uk-dark uk-margin">
                                         <span uk-icon="users"></span>
                                         <span>Quản lý tài khoản</span>
                                     </a>

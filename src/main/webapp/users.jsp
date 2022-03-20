@@ -28,30 +28,40 @@
         <section class="uk-section-default">
             <div class="uk-section uk-light uk-background-cover" style="background-image: url(https://t4.ftcdn.net/jpg/03/24/94/19/240_F_324941929_9DVxm0eIsy4a1RFrmPnvcjan7Z9Eo3Cn.jpg)">
                 <div class="uk-width-1-1">
-                    <span uk-icon="icon: table; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
-                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Chi tiết sản phẩm</h1>
+                    <span uk-icon="icon: users; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
+                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Quản lý người dùng</h1>
                 </div>
             </div>
         </section>
 
         <section class="uk-section-default uk-padding-large">
-            <div class="uk-width-1-1 uk-flex uk-flex-center">
+            <div class="uk-width-2-3 uk-flex uk-flex-center">
                 <table class="uk-table uk-table-hover uk-table-divider">
                     <thead>
                         <tr>
-                            <th>Hình ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Đơn giá</th>
+                            <th>UID</th>
+                            <th>Tên tài khoản</th>
+                            <th>Phân quyền Admin</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody uk-scrollspy="target: > tr; cls: uk-animation-slide-top; delay: 100">
-                        <c:forEach items="${products}" var="p">
+                        <c:forEach items="${users}" var="u">
                             <tr>
-                                <td><img class="uk-preserve-width" src="${p.image}" width="50" height="50" alt=""></td>
-                                <td><a class="uk-link-reset" href="product?p=${p.id}" uk-toggle="target: #product-detail">${p.name}</a></td>
-                                <td><span class="uk-text-primary uk-text-bolder">${p.price}</span> $</td>
-                                <td><a href="add?p=${p.id}"><button class="uk-button uk-button-default">Mua ngay</button></a></td>
+                                <td><span class="uk-text-primary">${u.id}</span></td>
+                                <td><span class="uk-text-bolder">${u.user}</span></td>
+                                <td>
+                                    <c:if test="${u.isAdmin == 1 && u.isSell == 1}">
+                                        <span class="uk-text-success" uk-icon="check"></span>
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${u.id != currentUserId}">
+                                    <a class="uk-button uk-button-danger" href="users?uid=${u.id}&action=remove">
+                                        <span uk-icon="trash"></span>
+                                    </a> 
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -82,7 +92,7 @@
                 <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
 
                     <button class="uk-modal-close-default" type="button" uk-close></button>
-                    
+
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 </div>

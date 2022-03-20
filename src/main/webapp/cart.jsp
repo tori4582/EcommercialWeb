@@ -58,32 +58,41 @@
                     <div class="uk-flex uk-flex-column uk-width-1-1">
                         <div class="uk-width-1-1">
                         <!--<h1>${sessionScope.acc}</h1>-->
-                    </div>
-                    <div class="uk-width-1-1">
-                        <table class="uk-table uk-table-hover uk-table-divider">
-                            <thead>
-                                <tr>
-                                    <th>Hình ảnh</th>
-                                    <th>Tên sản phẩm</th>
-                                    <th>Đơn giá</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody uk-scrollspy="target: > tr; cls: uk-animation-slide-top; delay: 100">
-                                <c:forEach items="${orders}" var="order">
+                        </div>
+                        <div class="uk-width-1-1">
+                            <table class="uk-table uk-table-hover uk-table-divider">
+                                <thead>
                                     <tr>
-                                        <td><img class="uk-preserve-width" src="${order.product.image}" width="50" height="50" alt=""></td>
-                                        <td><a class="uk-link-reset" href="products?p=${order.product.id}" uk-toggle="target: #product-detail">${order.product.name}</a></td>
-                                        <td><span class="uk-text-primary uk-text-bolder">${order.product.price}</span> $</td>
-                                        <td><a href="add?p=${order.product.id}"><button class="uk-button uk-button-default">Mua ngay</button></a></td>
+                                        <th>Hình ảnh</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
                                     </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody uk-scrollspy="target: > tr; cls: uk-animation-slide-top; delay: 100">
+                                    <c:forEach items="${orders}" var="order">
+                                        <tr id="" product-id="${order.product.id}">
+                                            <td><img class="uk-preserve-width" src="${order.product.image}" width="50" height="50" alt=""></td>
+                                            <td><a class="uk-link-reset" href="products?p=${order.product.id}" uk-toggle="target: #product-detail">${order.product.name}</a></td>
+                                            <td><span class="uk-text-primary uk-text-bolder">${order.product.price}</span> $</td>
+                                            <td>
+                                                <div class="uk-flex">
+                                                    <a class="uk-button uk-button-default" href="adjust?oid=${order.oid}&action=add">+</a>
+                                                    <input class="uk-input uk-width-small" type="number" id="quantity" name="quantity" min="1" max="5" value="${order.amount}">
+                                                    <a class="uk-button uk-button-default" href="adjust?oid=${order.oid}&action=sub">-</a>
+                                                    <a class="uk-button uk-button-danger" href="adjust?pid=${order.product.id}&action=remove">
+                                                        <span uk-icon="trash"></span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
 
+                        </div>
                     </div>
-                    </div>
-                    
+
                 </c:if>
         </section>
 
@@ -92,7 +101,7 @@
                 <div class="uk-flex uk-flex-right uk-flex-middle uk-margin-right">
                     <div class="uk-flex uk-flex-bottom">
                         <span class="uk-margin-right">Tổng số tiền cần thanh toán: </span>
-                        <strong><h1 id="amount" class="uk-padding-remove-vertical uk-margin-remove-vertical fg-white">${ 400 }</h1></strong>
+                        <strong><h1 id="amount" class="uk-padding-remove-vertical uk-margin-remove-vertical fg-white uk-animation-slide-top-medium">${ total }</h1></strong>
                         <span class="uk-margin-small-left">$</span>
                     </div>
                     <hr class="uk-divider-vertical" style="background: white; margin-left: 50px; margin-right: 50px;">
@@ -109,5 +118,13 @@
                 </div>
             </section>
         </c:if>
+
+        <script>
+            const adjustAmount = (productId) => {
+                const quantity = document.getElementById('quantity').value;
+                alert(quantity);
+            }
+        </script>
+
     </body>
 </html>

@@ -68,7 +68,14 @@ public class CartController extends HttpServlet {
 
         List<Order> orders = c.getOrders();
 
+        int total = 0;
+        
+        for (Order o : orders) {
+            total += o.getAmount() * o.getProduct().getPrice();
+        }
+        
         request.setAttribute("orders", orders);
+        request.setAttribute("total", total);
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 

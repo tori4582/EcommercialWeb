@@ -4,25 +4,24 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.NameDAO;
-import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
-import edu.fpt.vlxd.models.Product;
-import jakarta.servlet.ServletException;
+import edu.fpt.vlxd.dao.AccountDAO;
+import edu.fpt.vlxd.models.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "SearchController", urlPatterns = {"/search"})
-public class SearchController extends HttpServlet {
+@WebServlet(name = "UsersController", urlPatterns = {"/users"})
+public class UsersController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +35,28 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("q");
-        NameDAO dao = new NameDAO();
+        AccountDAO dao = new AccountDAO();
         
-        // normalize unicode characters to ascii standard characters
-        txtSearch = txtSearch.replaceAll("[^\\p{ASCII}]", ""); 
         
-        List<Product> list = dao.searchByName(txtSearch);
-        List<Category> listC = new ProductDAO().getAllCategory();
-        request.setAttribute("products", list);
-        request.setAttribute("txtS", txtSearch);
+        String action = request.getParameter("action");
         
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        if (action != null && action.equals("remove")) {
+            int uid = Integer.parseInt(request.getParameter("uid"));
+            dao.deleteAccount(uid);
+        }
+            
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int id = a.getId();
+        
+        
+        List<Account> list = dao.getAllUsers();
+        
+        request.setAttribute("users", list);
+        request.setAttribute("currentUserId", id);
+        request.getRequestDispatcher("users.jsp").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

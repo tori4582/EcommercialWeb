@@ -4,14 +4,13 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.NameDAO;
 import edu.fpt.vlxd.dao.ProductDAO;
-import edu.fpt.vlxd.models.Category;
 import edu.fpt.vlxd.models.Product;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,8 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author hungt
  */
-@WebServlet(name = "SearchController", urlPatterns = {"/search"})
-public class SearchController extends HttpServlet {
+@WebServlet(name = "ProductController", urlPatterns = {"/product"})
+public class ProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +35,12 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtSearch = request.getParameter("q");
-        NameDAO dao = new NameDAO();
-        
-        // normalize unicode characters to ascii standard characters
-        txtSearch = txtSearch.replaceAll("[^\\p{ASCII}]", ""); 
-        
-        List<Product> list = dao.searchByName(txtSearch);
-        List<Category> listC = new ProductDAO().getAllCategory();
-        request.setAttribute("products", list);
-        request.setAttribute("txtS", txtSearch);
-        
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        String id = request.getParameter("p");
+        ProductDAO dao = new ProductDAO();
+        Product p = dao.getProductByID(id);
+
+        request.setAttribute("product", p);
+        request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

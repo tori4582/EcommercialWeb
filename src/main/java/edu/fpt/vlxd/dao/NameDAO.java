@@ -18,12 +18,13 @@ public class NameDAO {
     // Search theo Name
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
-        String query = "select * from product\n"
-                + "where [name] like ?";
+//        String query = "select * from [product] where [name] like '%?%' \nunion\n select * from [product] where [description] like '%?%'";
+        String query = "select * from [product] where [name] like '%?%'";
         try {
             conn = new DBContext().getConnection();// mo ket noi voi sql
             ps = conn.prepareStatement(query);
-            ps.setString(1, "%" + txtSearch + "%");
+            ps.setString(1, txtSearch);
+//            ps.setString(2, txtSearch);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(rs.getInt(1),

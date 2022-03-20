@@ -13,7 +13,7 @@ public class DBContext {
         if (instance == null || instance.trim().isEmpty())
             url = "jdbc:sqlserver://"+serverName+":"+portNumber +";databaseName="+dbName+";encrypt=false";
         
-        System.out.println("[TASK] > Establish connection to database at: " + url + " ...");
+//        System.out.println("[TASK] > Establish connection to database at: " + url + " ...");
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         
         return DriverManager.getConnection(url, userID, password);

@@ -28,8 +28,8 @@
         <section class="uk-section-default">
             <div class="uk-section uk-light uk-background-cover" style="background-image: url(https://t4.ftcdn.net/jpg/03/24/94/19/240_F_324941929_9DVxm0eIsy4a1RFrmPnvcjan7Z9Eo3Cn.jpg)">
                 <div class="uk-width-1-1">
-                    <span uk-icon="icon: thumbnails; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
-                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Danh mục sản phẩm</h1>
+                    <span uk-icon="icon: table; ratio: 2.5" class="fg-white uk-float-left uk-margin-large-left"></span>
+                    <h1 class="fg-white uk-float-right uk-margin-remove-vertical uk-margin-large-right">Chi tiết sản phẩm</h1>
                 </div>
             </div>
         </section>
@@ -49,7 +49,7 @@
                         <c:forEach items="${products}" var="p">
                             <tr>
                                 <td><img class="uk-preserve-width" src="${p.image}" width="50" height="50" alt=""></td>
-                                <td><a class="uk-link-reset" href="products?p=${p.id}" uk-toggle="target: #product-detail">${p.name}</a></td>
+                                <td><a class="uk-link-reset" href="product?p=${p.id}" uk-toggle="target: #product-detail">${p.name}</a></td>
                                 <td><span class="uk-text-primary uk-text-bolder">${p.price}</span> $</td>
                                 <td><a href="add?p=${p.id}"><button class="uk-button uk-button-default">Mua ngay</button></a></td>
                             </tr>
