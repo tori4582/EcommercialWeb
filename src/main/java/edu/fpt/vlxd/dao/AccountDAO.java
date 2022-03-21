@@ -98,7 +98,6 @@ public class AccountDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static List<Account> getSellAccount() {

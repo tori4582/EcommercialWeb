@@ -34,38 +34,79 @@
             </div>
         </section>
 
-        <section class="uk-section-default uk-padding-large">
-            <div class="uk-width-2-3 uk-flex uk-flex-center">
+        <section class="uk-section-default uk-padding-large uk-width-1-1 uk-flex uk-flex-inline">
+            <div class="uk-width-1-2 uk-flex uk-flex-center">
                 <table class="uk-table uk-table-hover uk-table-divider">
                     <thead>
                         <tr>
-                            <th>UID</th>
+                            <th class="uk-width-small">UID</th>
                             <th>Tên tài khoản</th>
-                            <th>Phân quyền Admin</th>
+                            <th class="uk-width-small">Phân quyền Admin</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody uk-scrollspy="target: > tr; cls: uk-animation-slide-top; delay: 100">
                         <c:forEach items="${users}" var="u">
                             <tr>
-                                <td><span class="uk-text-primary">${u.id}</span></td>
+                                <td class="uk-width-small"><span class="uk-text-primary">${u.id}</span></td>
                                 <td><span class="uk-text-bolder">${u.user}</span></td>
-                                <td>
+                                <td class="uk-width-small">
                                     <c:if test="${u.isAdmin == 1 && u.isSell == 1}">
                                         <span class="uk-text-success" uk-icon="check"></span>
                                     </c:if>
                                 </td>
                                 <td>
                                     <c:if test="${u.id != currentUserId}">
-                                    <a class="uk-button uk-button-danger" href="users?uid=${u.id}&action=remove">
-                                        <span uk-icon="trash"></span>
-                                    </a> 
+                                        <a class="uk-button uk-button-danger" href="users?uid=${u.id}&action=remove">
+                                            <span uk-icon="trash"></span>
+                                        </a>
                                     </c:if>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="uk-width-1-3 uk-padding uk-box-shadow-large uk-float-right">
+                <div class="uk-flex uk-flex-middle uk-margin">
+                    <h2 class="uk-inline uk-margin-remove-vertical">Tạo tài khoản</h2>
+                </div>
+                <form class="uk-form-stacked" action="add-user" method="post">
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Tên tài khoản</label>
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input name="user" class="uk-input" type="text">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Mật khẩu</label>
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input name="pass" class="uk-input" type="password">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Nhập lại mật khẩu</label>
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input name="repass" class="uk-input" type="password">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <!-- Lẽ ra sẽ có ghi nhớ đăng nhập ở đây :)))) -->
+                    </div>
+
+                    <div class="uk-margin">
+                        <hr>
+                        <button class="uk-button uk-button-danger uk-width-1-1 bg-red" type="submit">
+                            <span class="uk-width-1-1 uk-text-center">
+                                <span class="uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                                <span>Tạo tài khoản</span>
+                            </span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
 

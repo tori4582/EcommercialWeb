@@ -68,7 +68,7 @@
                             </div>
                             <div uk-dropdown>
                                 <c:if test="${acc.isAdmin == 1 && acc.isSell == 1}">
-                                    <a href="products-management" class="uk-dark uk-margin">
+                                    <a href="prodmgr" class="uk-dark uk-margin">
                                         <span uk-icon="thumbnails"></span>
                                         <span>Quản lý sản phẩm</span>
                                     </a>

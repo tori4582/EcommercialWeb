@@ -4,8 +4,7 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
-import edu.fpt.vlxd.models.Account;
+import edu.fpt.vlxd.dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,8 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author hungt
  */
-@WebServlet(name = "SignupController", urlPatterns = {"/signup"})
-public class SignupController extends HttpServlet {
+@WebServlet(name = "EditProductForm", urlPatterns = {"/edit-product-action"})
+public class EditProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,22 +32,25 @@ public class SignupController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String pid = request.getParameter("id");
         
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        String re_pass = request.getParameter("repass");
+        String pname = request.getParameter("name");
         
-        if (!pass.equals(re_pass)) {
-            response.sendRedirect("home.jsp");
-        } else {
-            AccountDAO dao = new AccountDAO();
-            Account a = dao.checkAccountExist(user);
-            if (a == null) {
-                //dc signup
-                dao.singup(user, pass);
-            } 
-            response.sendRedirect("home");
-        }
+        System.out.println(pname);
+        
+        String pimage = request.getParameter("image");
+        String pprice = request.getParameter("price");
+        String ptitle = request.getParameter("title");
+        String pdescription = request.getParameter("description");
+        String pcategory = request.getParameter("category");
+        System.out.println(pcategory);
+        String cid = pcategory.split("-")[0].trim();
+        System.out.println(cid);
+
+        ProductDAO dao = new ProductDAO();
+        
+        dao.editProduct(pname, pimage, pprice, ptitle, pdescription, cid, pid);
+        response.sendRedirect("prodmgr");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

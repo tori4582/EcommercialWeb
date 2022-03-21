@@ -4,8 +4,10 @@
  */
 package edu.fpt.vlxd.controllers;
 
-import edu.fpt.vlxd.dao.AccountDAO;
+import edu.fpt.vlxd.dao.ProductDAO;
 import edu.fpt.vlxd.models.Account;
+import edu.fpt.vlxd.models.Category;
+import edu.fpt.vlxd.models.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,13 +15,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  *
  * @author hungt
  */
-@WebServlet(name = "SignupController", urlPatterns = {"/signup"})
-public class SignupController extends HttpServlet {
+@WebServlet(name = "ProductsManager", urlPatterns = {"/prodmgr"})
+public class ProductsManager extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,22 +37,42 @@ public class SignupController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("acc");
+        int id = a.getId();
+
+        String action = request.getParameter("action");
+        ProductDAO dao = new ProductDAO();
         
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        String re_pass = request.getParameter("repass");
-        
-        if (!pass.equals(re_pass)) {
-            response.sendRedirect("home.jsp");
-        } else {
-            AccountDAO dao = new AccountDAO();
-            Account a = dao.checkAccountExist(user);
-            if (a == null) {
-                //dc signup
-                dao.singup(user, pass);
-            } 
-            response.sendRedirect("home");
+        List<Category> listCC = dao.getAllCategory();
+
+        if (action == null) {
+
+            List<Product> list = dao.getAllProduct();
+            
+
+            request.setAttribute("listCC", listCC);
+            request.setAttribute("products", list);
+            request.getRequestDispatcher("productsmgr.jsp").forward(request, response);
+        } else if (action.equals("remove")) {
+            String pid = request.getParameter("id");
+            dao.deleteProduct(pid);
+            response.sendRedirect("prodmgr");
+        } else if (action.equals("edit")) {
+            String pid = request.getParameter("id");
+            int pcid = dao.getCategoryIdOfProduct(Integer.parseInt(pid));
+            
+            Product p = dao.getProduct(Integer.parseInt(pid));
+            
+            request.setAttribute("listCC", listCC);
+            request.setAttribute("pcid", pcid);
+            request.setAttribute("p", p);
+            
+            System.out.println(pcid);
+            
+            request.getRequestDispatcher("edit-product.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

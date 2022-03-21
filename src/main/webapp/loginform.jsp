@@ -71,7 +71,7 @@
                     <a href="" class="uk-inline uk-margin-small-right" uk-slidenav-previous uk-toggle="target: .input-form; animation: uk-animation-slide-right"></a>
                     <h2 class="uk-inline uk-margin-remove-vertical">Tạo tài khoản</h2>
                 </div>
-                <form class="uk-form-stacked" action="login" method="post">
+                <form class="uk-form-stacked" action="signup" method="post">
                     <div class="uk-margin">
                         <label class="uk-form-label">Username</label>
                         <div class="uk-inline uk-width-1-1">

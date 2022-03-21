@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author hungt
  */
-@WebServlet(name = "SignupController", urlPatterns = {"/signup"})
-public class SignupController extends HttpServlet {
+@WebServlet(name = "AddUser", urlPatterns = {"/add-user"})
+public class AddUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,23 +32,23 @@ public class SignupController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
         String re_pass = request.getParameter("repass");
-        
+
         if (!pass.equals(re_pass)) {
-            response.sendRedirect("home.jsp");
-        } else {
-            AccountDAO dao = new AccountDAO();
-            Account a = dao.checkAccountExist(user);
-            if (a == null) {
-                //dc signup
-                dao.singup(user, pass);
-            } 
-            response.sendRedirect("home");
+            response.sendRedirect("users");
+            return;
         }
+
+        AccountDAO dao = new AccountDAO();
+        Account a = dao.checkAccountExist(user);
+        if (a == null) {
+            //dc signup
+            dao.singup(user, pass);
+        }
+        response.sendRedirect("users");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
